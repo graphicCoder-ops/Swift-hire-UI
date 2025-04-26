@@ -18,6 +18,6 @@ interface CandidateType{
   styleUrl: './candidates.component.css'
 })
 export class CandidatesComponent {
-  private candidateservice = inject(CandidateService);
-     list:CandidateType[] = this.candidateservice.getCandidate();
+    private candidateservice = inject(CandidateService);
+    list:CandidateType[] = this.candidateservice.getCandidate();
 }

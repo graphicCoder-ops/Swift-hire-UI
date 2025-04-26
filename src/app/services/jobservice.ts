@@ -1,24 +1,23 @@
-import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
-interface JobType {
-  id: number;
-  title: string;
-  description: string;
-  salary?: number | any;
+interface Job{
+  id:number;
+  title:string;
+  description:string;
+  location:string;
 }
 
 @Injectable({
   providedIn: 'root',
 })
 export class JobService {
-  getJobs(): JobType[] {
-    return [
-      {
-        id: 1,
-        title: 'Frontend Developer',
-        description: 'For Angular',
-      },
-      { id: 2, title: 'Backend Developer', description: 'For Spring Boot' },
-    ];
+  constructor(private http:HttpClient){}
+
+  private url = 'https://swifthire-vy0q.onrender.com/jobs';
+
+  getJobs():Observable<Job[]>{
+    return this.http.get<Job[]>(this.url)
   }
 }

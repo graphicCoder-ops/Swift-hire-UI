@@ -3,11 +3,11 @@ import {JobService} from '../services/jobservice';
 import { CommonModule, NgFor } from '@angular/common';
 
 
-interface JobType{
+interface Job{
   id:number;
   title:string;
   description:string;
-  salary?:number|any;
+  location:string;
 }
 
 @Component({
@@ -18,6 +18,12 @@ interface JobType{
 })
 export class JobsComponent {
   private jobService = inject(JobService);
-   list:JobType[] = this.jobService.getJobs();
+  jobs: Job[] = [];
+  
+  ngOnInit(){
+    this.jobService.getJobs().subscribe(
+      data => {this.jobs = data}
+  );
+  }
 
 }
