@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import {JobService} from '../services/jobservice';
 import { CommonModule, NgFor } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { NgxEditorComponent, NgxEditorMenuComponent, Editor } from 'ngx-editor';
 
 
 interface Job{
@@ -14,13 +15,25 @@ interface Job{
 
 @Component({
   selector: 'app-jobs',
-  imports: [CommonModule,NgFor,FormsModule],
+  imports: [CommonModule,NgFor,FormsModule,NgxEditorComponent, NgxEditorMenuComponent],
   templateUrl: './jobs.component.html',
   styleUrl: './jobs.component.css'
 })
 export class JobsComponent {
+  style= {
+    editable: true,
+    height: '50rem',
+    minHeight: '30rem',
+    placeholder: 'Type here',
+    translate: 'no'
+  };
   private jobService = inject(JobService);
   jobs: Job[] = [];
+  editor: Editor = new Editor();
+  isCreating:boolean = false;
+  jobTitle: string = '';
+  jobDescription: string = '';
+  jobLocation:string ='';
   
   ngOnInit(){
     this.jobService.getJobs().subscribe(
@@ -29,12 +42,8 @@ export class JobsComponent {
   }
 
 
-  isCreating:boolean = false;
-  jobTitle: string = '';
-  jobDescription: string = '';
-  jobLocation:string ='';
-
   saveJob() {
+    console.log(this.jobDescription)
     if (!this.jobTitle || !this.jobDescription) {
       alert('Missing fields.');
       return;
@@ -53,5 +62,9 @@ export class JobsComponent {
       },
       error: (err) => console.error('Error posting job:', err)
     });
+  }
+
+  ngOnDestroy(){
+    this.editor.destroy();
   }
 }
