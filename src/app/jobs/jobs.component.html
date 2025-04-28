@@ -67,7 +67,10 @@
 
     <div class="p-2 bg-gray-100 border-2 border-gray-200 m-2 rounded-md" *ngFor="let item of jobs">
         <div class="text-xl font-bold">{{item.title}}</div>
-        <div>{{item.description}}</div>
-        <div>{{item.location}}</div>
+        <div class="flex items-center" >
+            <div class="mr-1">{{item.location}}</div>
+            <div *ngIf="item.workMode==2" class="p-1 text-green-500 border-2 bg-green-200 border-green-400 rounded-sm text-xs font-bold">remote</div>
+            <div *ngIf="item.workMode==3" class="p-1 text-green-500 border-2 bg-green-200 border-green-400 rounded-sm text-xs font-bold">hybrid</div>
+        </div>
 </div>
 </div>
