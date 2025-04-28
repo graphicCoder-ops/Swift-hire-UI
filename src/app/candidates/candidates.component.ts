@@ -3,12 +3,11 @@ import { CandidateService } from '../services/candidateservice';
 import { CommonModule, NgFor } from '@angular/common';
 
 interface CandidateType{
-  name:string;
-  applied:string;
-  email:string;
-  phone:number;
-  address:string;
-  city:string;
+  id:number;
+  candidateFirstName:string;
+  candidateLastName:string;
+  candidateEmail:string;
+  candidatePhone:number;
 }
 
 @Component({
@@ -19,5 +18,11 @@ interface CandidateType{
 })
 export class CandidatesComponent {
     private candidateservice = inject(CandidateService);
-    list:CandidateType[] = this.candidateservice.getCandidate();
+    candidates :CandidateType[]=[]
+
+    ngOnInit(){
+      this.candidateservice.getCandidate().subscribe(
+        data => {this.candidates = data}
+    );
+    }
 }

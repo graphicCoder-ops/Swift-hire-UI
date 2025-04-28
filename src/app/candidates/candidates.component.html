@@ -2,27 +2,21 @@
     <div class="m-4">
         <div class="font-bold text-2xl">Candidates</div>
     </div>
-    <div class="p-2 bg-gray-100 border-2 border-gray-200 m-2 rounded-md border-l-blue-500" *ngFor="let item of list">
-        <div class="flex flex-row justify-between">
-            <div class="text-2xl font-bold">{{item.name}}</div>
-            <div class="my-1">
-                <span class="font-semibold">Applied:</span>
-                {{ item.applied }}
-            </div>
+    <div class="p-2 bg-gray-100 border-2 border-gray-200 m-2 rounded-md" *ngFor="let item of candidates">
+        <div class="flex flex-row ">
+            <div class="text-2xl font-bold">{{item.candidateFirstName}} {{item.candidateLastName}}</div>
+            
+
         </div>
           <div class="flex flex-col space-y-1 mt-2 text-sm">
             <div>
-              <span class="font-semibold">Email:</span> {{ item.email }}
+              <span class="font-semibold">Email:</span> {{ item.candidateEmail }}
             </div>
             <div>
-              <span class="font-semibold">Phone:</span> {{ item.phone }}
+              <span class="font-semibold">Phone:</span> {{ item.candidatePhone }}
             </div>
-            <div>
-              <span class="font-semibold">Address:</span> {{ item.address }}
-            </div>
-            <div>
-              <span class="font-semibold">City:</span> {{ item.city }}
-            </div>
+
+
           </div>
     </div>
 

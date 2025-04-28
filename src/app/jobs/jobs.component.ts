@@ -1,10 +1,11 @@
 import { Component, inject } from '@angular/core';
 import {JobService} from '../services/jobservice';
 import { CommonModule, NgFor } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 
 interface Job{
-  id:number;
+  id?:number;
   title:string;
   description:string;
   location:string;
@@ -12,7 +13,7 @@ interface Job{
 
 @Component({
   selector: 'app-jobs',
-  imports: [CommonModule,NgFor],
+  imports: [CommonModule,NgFor,FormsModule],
   templateUrl: './jobs.component.html',
   styleUrl: './jobs.component.css'
 })
@@ -26,4 +27,30 @@ export class JobsComponent {
   );
   }
 
+
+  isCreating:boolean = false;
+  jobTitle: string = '';
+  jobDescription: string = '';
+  jobLocation:string ='';
+
+  saveJob() {
+    if (!this.jobTitle || !this.jobDescription) {
+      alert('Missing fields.');
+      return;
+    }
+  
+    this.jobService.postJobs({
+      title: this.jobTitle,
+      description: this.jobDescription,
+      location: this.jobLocation,
+      
+    }).subscribe({
+      next: (createdJob) => {
+        this.jobs.push(createdJob);
+        this.isCreating = false;
+        this.jobTitle = this.jobDescription = this.jobLocation = '';
+      },
+      error: (err) => console.error('Error posting job:', err)
+    });
+  }
 }

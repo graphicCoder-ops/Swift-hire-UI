@@ -3,7 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 interface Job{
-  id:number;
+  id?:number;
   title:string;
   description:string;
   location:string;
@@ -20,4 +20,9 @@ export class JobService {
   getJobs():Observable<Job[]>{
     return this.http.get<Job[]>(this.url)
   }
+
+  postJobs(job: Job): Observable<Job> {
+    return this.http.post<Job>(this.url, job);
+  }
+
 }
