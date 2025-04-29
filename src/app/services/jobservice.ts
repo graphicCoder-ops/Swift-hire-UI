@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../environment';
 
 interface Job{
   id?:number;
@@ -16,14 +17,12 @@ interface Job{
 export class JobService {
   constructor(private http:HttpClient){}
 
-  private url = 'https://swifthire-vy0q.onrender.com/jobs';
-
   getJobs():Observable<Job[]>{
-    return this.http.get<Job[]>(this.url)
+    return this.http.get<Job[]>(environment.API_URL + "/jobs")
   }
 
   postJobs(job: Job): Observable<Job> {
-    return this.http.post<Job>(this.url, job);
+    return this.http.post<Job>(environment.API_URL + "/jobs", job);
   }
 
 }

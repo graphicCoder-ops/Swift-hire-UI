@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { environment } from "../environment";
 
 interface CandidateType{
   id:number;
@@ -17,10 +18,9 @@ interface CandidateType{
 export class CandidateService{
 
   constructor (private http:HttpClient){}
-  private url = 'https://swifthire-vy0q.onrender.com/candidate';
 
   getCandidate() :Observable<CandidateType[]>{
-    return this.http.get<CandidateType[]>(this.url)
+    return this.http.get<CandidateType[]>(environment.API_URL + "/candidates")
   }
 
 
