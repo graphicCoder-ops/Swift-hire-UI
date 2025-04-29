@@ -3,6 +3,7 @@ import {JobService} from '../services/jobservice';
 import { CommonModule, NgFor } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgxEditorComponent, NgxEditorMenuComponent, Editor } from 'ngx-editor';
+import { Router } from '@angular/router';
 
 
 interface Job{
@@ -28,6 +29,8 @@ export class JobsComponent {
     placeholder: 'Type here',
     translate: 'no'
   };
+
+  constructor(private router: Router) {}
   private jobService = inject(JobService);
   jobs: Job[] = [];
   editor: Editor = new Editor();
@@ -68,5 +71,9 @@ export class JobsComponent {
 
   ngOnDestroy(){
     this.editor.destroy();
+  }
+
+  openJob(){
+    this.router.navigate(['/jobs/specific-job']);
   }
 }

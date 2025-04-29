@@ -26,6 +26,6 @@ export class JobService {
     return this.http.post<Job>(environment.API_URL + "/jobs", job);
   }
 
-
+  
 
 }
