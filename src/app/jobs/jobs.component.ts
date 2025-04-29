@@ -11,6 +11,7 @@ interface Job{
   description:string;
   location:string;
   workMode:number;
+  candidatesCount: number;
 }
 
 @Component({
@@ -53,7 +54,8 @@ export class JobsComponent {
       title: this.jobTitle,
       description: this.jobDescription,
       location: this.jobLocation,
-      workMode:1
+      workMode:1,
+      candidatesCount:0
     }).subscribe({
       next: (createdJob) => {
         this.jobs.push(createdJob);

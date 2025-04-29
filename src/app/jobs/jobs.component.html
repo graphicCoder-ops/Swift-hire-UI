@@ -1,19 +1,14 @@
 <div class="flex-auto">
   <div class="flex justify-between m-4">
     <div class="font-bold text-2xl">Jobs</div>
-    <button
-      class="rounded-sm bg-blue-600 p-2 text-white cursor-pointer hover:bg-blue-500 active:bg-blue-800"
-      (click)="isCreating = true"
-    >
+    <button class="rounded-sm bg-blue-600 p-2 text-white cursor-pointer hover:bg-blue-500 active:bg-blue-800"
+      (click)="isCreating = true">
       Create
     </button>
   </div>
 
   <!-- open the form-->
-  <div
-    *ngIf="isCreating"
-    class="fixed inset-0 flex items-center justify-center backdrop-blur-md"
-  >
+  <div *ngIf="isCreating" class="fixed inset-0 flex items-center justify-center backdrop-blur-md">
     <div class="bg-white p-8 rounded-md shadow-lg w-1/3">
       <h2 class="text-2xl font-bold mb-4">Create New Job</h2>
       <div class="flex justify-between gap-4">
@@ -21,22 +16,12 @@
           <label for="jobTitle" class="block mb-1">
             Job Title <span class="text-red-500">*</span>
           </label>
-          <input
-            [(ngModel)]="jobTitle"
-            id="jobTitle"
-            class="rounded-sm border p-2 w-full mb-4"
-            type="text"
-          />
+          <input [(ngModel)]="jobTitle" id="jobTitle" class="rounded-sm border p-2 w-full mb-4" type="text" />
         </div>
 
         <div>
           <label for="jobLocation" class="block mb-1"> Job Location </label>
-          <input
-            [(ngModel)]="jobLocation"
-            id="jobLocation"
-            class="rounded-sm border p-2 w-80 mb-4"
-            type="text"
-          />
+          <input [(ngModel)]="jobLocation" id="jobLocation" class="rounded-sm border p-2 w-80 mb-4" type="text" />
         </div>
       </div>
       <div>
@@ -44,52 +29,39 @@
           Job Description <span class="text-red-500">*</span>
         </label>
         <ngx-editor-menu [editor]="editor"> </ngx-editor-menu>
-        <ngx-editor
-          [editor]="editor"
-          [(ngModel)]="jobDescription"
-          [disabled]="false"
-          [placeholder]="'Type here...'"
-          [style]="style"
-        ></ngx-editor>
+        <ngx-editor [editor]="editor" [(ngModel)]="jobDescription" [disabled]="false" [placeholder]="'Type here...'"
+          [style]="style"></ngx-editor>
       </div>
 
       <div class="flex justify-end space-x-2">
-        <button
-          class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400"
-          (click)="isCreating = false"
-        >
+        <button class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400" (click)="isCreating = false">
           Cancel
         </button>
-        <button
-          class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-500"
-          (click)="saveJob()"
-        >
+        <button class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-500" (click)="saveJob()">
           Save
         </button>
       </div>
     </div>
   </div>
 
-  <div
-    class="p-2 bg-gray-100 border-2 border-gray-200 m-2 rounded-md hover:bg-gray-300 cursor-pointer"
-    *ngFor="let item of jobs"
-  >
-    <div class="text-xl font-bold">{{ item.title }}</div>
+  <div class="p-2 bg-gray-100 border-2 border-gray-200 m-2 rounded-md hover:bg-gray-300 cursor-pointer"
+    *ngFor="let item of jobs">
+    <div class="flex justify-between items-center">
+      <div class="text-xl font-bold-">{{ item.title }}</div>
+      <div class="mr-5 font-semibold ">No of Candidates:{{item.candidatesCount}}</div>
+    </div>
     <div class="flex items-center">
       <div class="mr-1">{{ item.location }}</div>
-      <div
-        *ngIf="item.workMode == 2"
-        class="p-1 text-green-500 border-2 bg-green-200 border-green-400 rounded-sm text-xs font-bold"
-      >
+      <div *ngIf="item.workMode == 2"
+        class="p-1 text-green-500 border-2 bg-green-200 border-green-400 rounded-sm text-xs font-bold">
         remote
       </div>
-      <div
-        *ngIf="item.workMode == 3"
-        class="p-1 text-green-500 border-2 bg-green-200 border-green-400 rounded-sm text-xs font-bold"
-      >
+      <div *ngIf="item.workMode == 3"
+        class="p-1 text-green-500 border-2 bg-green-200 border-green-400 rounded-sm text-xs font-bold">
         hybrid
       </div>
     </div>
+    
   </div>
-  
+
 </div>

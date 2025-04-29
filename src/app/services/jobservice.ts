@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { environment } from '../environment';
 
 interface Job{
@@ -8,6 +8,7 @@ interface Job{
   title:string;
   description:string;
   location:string;
+  candidatesCount: number;
   workMode:number;
 }
 
@@ -24,5 +25,7 @@ export class JobService {
   postJobs(job: Job): Observable<Job> {
     return this.http.post<Job>(environment.API_URL + "/jobs", job);
   }
+
+
 
 }
