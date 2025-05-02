@@ -4,7 +4,7 @@ import { map, Observable } from 'rxjs';
 import { environment } from '../environment';
 
 interface Job{
-  id?:number;
+  id?:string;
   title:string;
   description:string;
   location:string;

@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 
 
 interface Job{
-  id?:number;
+  id?:string;
   title:string;
   description:string;
   location:string;
@@ -73,7 +73,7 @@ export class JobsComponent {
     this.editor.destroy();
   }
 
-  openJob(){
-    this.router.navigate(['/jobs/specific-job']);
+  openJob(id:string | undefined){
+    this.router.navigate(['/job-details/' + id]);
   }
 }
