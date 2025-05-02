@@ -2,3 +2,13 @@
     min-height: 400px;
     height: 400px;
   }
+
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+.no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
