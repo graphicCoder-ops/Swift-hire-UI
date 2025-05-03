@@ -35,6 +35,7 @@ export class JobsComponent {
   jobs: Job[] = [];
   editor: Editor = new Editor();
   isCreating:boolean = false;
+  salaryType: string = '';
   jobTitle: string = '';
   jobDescription: string = '';
   jobLocation:string ='';
